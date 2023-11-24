@@ -2,10 +2,10 @@
 
 <template>
   <header class="container">
-    <div class="wrapper">
-      <nav class="navbar" >
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/create">User Create</RouterLink>
+    <div class="wrapper ">
+      <nav class="navbar">
+        <q-btn color="positive" label="home" icon="home" @click="goToHome"/>
+        <q-btn color="positive" label="create user" icon="create" @click="goToCreateUser"/>
       </nav>
     </div>
   </header>
@@ -14,7 +14,18 @@
 </template>
 
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterView, useRouter } from 'vue-router'
+
+const router = useRouter()
+
+const goToHome = () => {
+  router.push({ path: '/' })
+}
+
+const goToCreateUser = () => {
+  router.push({ path: '/create' })
+}
+
 </script>
 
 <style scoped>
@@ -22,31 +33,31 @@ import { RouterLink, RouterView } from 'vue-router'
 
 body {
   font-family: 'Poppins', sans-serif;
- 
+
 }
-.wrapper{
- 
+
+.navbar {
+  display: flex;
+  gap: 50px;
+  margin-bottom: 50px;
   
 }
-  .navbar{
-    display: flex;
-    gap: 50px;
-    margin-bottom: 50px;
-  }
-  .navbar a{
-    text-decoration: none;
-    text-transform: uppercase;
-    color: black;
-    font-size: 20px;
-    cursor: pointer;
-    background: rgb(92, 92, 174);
-    color: white;
-    padding: 10px 15px;
-    border-radius: 20px;
-    transition: 500ms;
-  }
-  .navbar a:hover{
-    color: black;
-    background: yellowgreen;
-  }
-</style>
+
+.navbar a {
+  text-decoration: none;
+  text-transform: uppercase;
+  color: black;
+  font-size: 20px;
+  cursor: pointer;
+  /* background: rgb(92, 92, 174); */
+  color: white;
+  padding: 10px 15px;
+  width: 100%;
+  height: 100%;
+  transition: 500ms;
+  font-weight: 700;
+}
+.navbar a:hover {
+  color: black;
+  /* background: yellowgreen; */
+}</style>

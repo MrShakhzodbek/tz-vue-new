@@ -5,7 +5,7 @@ import axios from 'axios'
 export const useProductsStore = defineStore({
   id: 'products',
   state: () => ({
-    data: [] as any[], 
+    data: [] as any[],   
     name: '',
     cost: null as number | null,
     address: '',

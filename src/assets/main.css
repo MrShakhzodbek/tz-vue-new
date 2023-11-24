@@ -3,9 +3,10 @@
   padding: 0;
   box-sizing: border-box;
   user-select: none;
+  min-height: auto;
 }
 #app{
- height: 100vh;
+ min-height: 100vh;
  width: 100vw;
   background: rgb(107, 202, 223);
   padding: 50px 100px;

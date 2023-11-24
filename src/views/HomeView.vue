@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <table class="table rounded" width="100%" border="1">
+   <div>
+    <q-markup-table dark class="bg-8 table rounded ">
       <thead>
         <tr>
           <th>Id</th>
@@ -17,21 +17,25 @@
           <td>{{ item.name_uz }}</td>
           <td>{{ item.cost }}</td>
           <td>{{ item.address }}</td>
-          <td><button class="btn btn-primary" @click="passUpdatePage(item?.id)">Edit</button></td>
-          <td><button class="btn btn-danger" @click="confirmDelete(item?.id)">Delete</button></td>
+          <td><q-btn color="primary" label="Edit" icon="edit" @click="passUpdatePage(item?.id)" /></td>
+          <td><q-btn color="negative" label="Delete" icon="delete" @click="confirmDelete(item?.id)" /></td>
         </tr>
       </tbody>
-    </table>
-  </div>
+   
+    </q-markup-table>
+   </div>
+  
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+import { onMounted, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useProductsStore } from '@/stores/counter'
 
 const products = useProductsStore()
 const router = useRouter()
+
+
 
 function confirmDelete(id: number) {
   const isConfirmed = window.confirm(`Ishonchingiz komilmi o'chirgani`)
@@ -40,7 +44,7 @@ function confirmDelete(id: number) {
   }
 }
 
-function passUpdatePage(id:number) {
+function passUpdatePage(id: number) {
   const singleData = products.data.find((el) => el.id === id)
   router.push({
     path: `update/${id}`,
@@ -55,9 +59,15 @@ function passUpdatePage(id:number) {
 onMounted(() => {
   products.fetchData()
 })
+
+
 </script>
 
 <style>
+
+thead{
+  background: rgb(16, 69, 226);
+}
 td {
   font-size: 20px;
   text-align: start;
@@ -65,18 +75,22 @@ td {
   text-align: center;
 }
 
-th {
+tr th {
   text-transform: uppercase;
   text-align: center;
-
+  font-weight: 700;
+  
 }
-.table{
+
+.table {
   border-collapse: collapse;
 }
-tr th{
+
+tr th {
   padding: 10px 0;
 }
-tbody tr td .btn{
+
+tbody tr td .btn {
   width: 50%;
   padding: 10px 5px;
   font-size: 15px;
@@ -87,7 +101,8 @@ tbody tr td .btn{
   transition: 500ms;
   border-radius: 10px;
 }
-tbody tr td .btn:hover{
+
+tbody tr td .btn:hover {
   color: white;
   background: rgb(40, 37, 37);
 }
